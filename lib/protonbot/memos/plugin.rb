@@ -46,7 +46,7 @@ ProtonBot::Plugin.new do
     memos = dat[:db].query('memos').ensure.select('host' => dat[:host]).finish
     unless memos.empty?
       memos.each do |memo|
-        dat.reply("#{dat[:nick]}: #{memo['message']} [#{memo['by']}]")
+        dat.reply("%B#{dat[:nick]}%N: #{memo['message']} %B[%N%C%PURPLE#{memo['by']}%N%B]%N")
       end
       dat[:db].query('memos').ensure.delete('host' => dat[:host]).write.finish
     end
